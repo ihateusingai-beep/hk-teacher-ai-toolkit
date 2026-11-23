@@ -50,7 +50,7 @@
   </style>
 </head>
 <body class="bg-soft text-ink antialiased">
-  <!-- BUILD: hk-teacher-ai-toolkit-p0d-2026-11-23 -->
+  <!-- BUILD: hk-teacher-ai-toolkit-p0e-2026-11-23 -->
   <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-brand focus:text-white focus:px-3 focus:py-2 focus:rounded">跳到內容</a>
 
   <header class="sticky top-0 z-40 border-b border-line bg-white/90 backdrop-blur">
@@ -239,9 +239,15 @@
     { id:'cursor', name:'Cursor', url:'https://cursor.com/zh-Hant', scene:['vibe'], tier:'pro',
       one:'AI 程式編輯器（有 code 底）。', best:'改現有專案、進階開發', how:'開資料夾 → Chat／Composer', hk:'進階老師用。', privacy:'中', source:'外部', tags:'Cursor 程式' },
     { id:'manus', name:'Manus', url:'https://manus.im/', scene:['vibe','plan'], tier:'alt',
-      one:'Agent 自動完成整理任務。', best:'自動整理教材、報告草稿', how:'交代任務 → 等產出 → 審核', hk:'輸出必人工核。', privacy:'中', source:'外部', tags:'Agent Manus' },
-    { id:'qwen-vibe', name:'Qwen（私隱／中文 coding）', url:'https://chat.qwen.ai/', scene:['vibe','plan'], tier:'alt',
-      one:'中文 coding 強，可配本地思路。', best:'私隱優先小工具構思', how:'要完整 HTML 單檔 → 複製自建 Pages', hk:'可配合本機模型思維。', privacy:'低', source:'外部', tags:'Qwen coding 私隱' },
+      one:'Agent 自動規劃並完成多步任務。', best:'整理教材、產出報告草稿', how:'交代任務 → 等產出 → 人工審核', hk:'產出必須人工核對。', privacy:'中', source:'外部', tags:'Agent Manus' },
+    { id:'genspark', name:'Genspark', url:'https://www.genspark.ai/', scene:['vibe','plan'], tier:'alt',
+      one:'AI Agent：搜尋、整理、產出文件與簡報。', best:'主題資料蒐集、活動方案、報告初稿', how:'輸入任務 → 等 Agent 完成 → 下載／複製', hk:'勿上傳學生個人資料。', privacy:'高', source:'外部', tags:'Genspark Agent 研究' },
+    { id:'qwen-work', name:'Qwen Work', url:'https://chat.qwen.ai/', scene:['vibe','plan'], tier:'gold',
+      one:'Qwen Agent／網頁開發模式，中文交付完整成果。', best:'教師自助做網頁工具、行政小應用', how:'選擇 Agent 或網頁開發 → 用中文描述需求 → 複製或部署', hk:'中文友好；完成後必自行測試。', privacy:'中', source:'外部', tags:'Qwen Work Agent 網頁開發' },
+    { id:'trae', name:'Trae', url:'https://www.trae.ai/', scene:['vibe'], tier:'alt',
+      one:'免費向 AI 程式編輯器，介面較易上手。', best:'想用編輯器做工具、又未用 Cursor', how:'安裝 → 用中文說明要改的功能', hk:'適合開始學開發的老師。', privacy:'中', source:'外部', tags:'Trae IDE 免費' },
+    { id:'qwen-vibe', name:'Qwen Chat', url:'https://chat.qwen.ai/', scene:['plan'], tier:'alt',
+      one:'通用中文對話與長文整理。', best:'教案、評語、文件摘要', how:'直接提問或貼要點', hk:'與 Qwen Work 同源；日常對話用此即可。', privacy:'中', source:'外部', tags:'Qwen 對話 中文' },
 
     // ken picks
     { id:'tda', name:'TDA Builder', url:'https://chengky-bot.github.io/TDA-Prompt-Builder/', scene:['ken','plan'], tier:'gold',
