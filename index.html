@@ -50,7 +50,7 @@
   </style>
 </head>
 <body class="bg-soft text-ink antialiased">
-  <!-- BUILD: hk-teacher-ai-toolkit-p0-2026-11-23 -->
+  <!-- BUILD: hk-teacher-ai-toolkit-p0b-2026-11-23 -->
   <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-brand focus:text-white focus:px-3 focus:py-2 focus:rounded">跳到內容</a>
 
   <header class="sticky top-0 z-40 border-b border-line bg-white/90 backdrop-blur">
@@ -75,7 +75,7 @@
           期末評語、家長通知、學生記錄、活動總結一齊嚟？
         </h2>
         <p class="text-indigo-50 max-w-2xl text-sm sm:text-base leading-relaxed">
-          按<strong>任務</strong>揀 AI，特別適合香港特殊教育老師。每場景只推金牌＋備選，唔使翻 99 個書籤。
+          按任務揀 AI，適合香港老師日常行政同教學。
         </p>
         <div class="mt-5 flex flex-col sm:flex-row gap-3">
           <label class="flex-1 relative">
@@ -91,14 +91,10 @@
     <!-- Combo -->
     <section class="mb-6" aria-label="推薦組合">
       <div class="rounded-xl border border-line bg-white p-4 sm:p-5">
-        <div class="flex flex-wrap items-center gap-2 mb-2">
-          <span class="text-xs font-bold uppercase tracking-wider text-gold">推薦組合</span>
-          <span class="text-xs text-mute">先記住呢 5 個就夠用大半個學期</span>
-        </div>
+        <p class="text-xs font-bold tracking-wider text-gold mb-2">推薦組合</p>
         <p class="text-sm sm:text-base font-semibold text-ink">
           Gemini · Canva · iLovePDF · Google/MS Forms · Lovable
         </p>
-        <p class="text-xs text-mute mt-1">SEN 副線：Qwen · Wordwall · Padlet · 你自製課件</p>
       </div>
     </section>
 
@@ -116,41 +112,15 @@
     <!-- Empty -->
     <p id="empty" class="hidden text-center text-mute py-16">搵唔到。試下改關鍵字或撳「全部」。</p>
 
-    <!-- Tips -->
-    <section id="tips" class="mt-12 rounded-2xl border border-line bg-white p-6 sm:p-8">
-      <h2 class="text-xl font-extrabold mb-4">使用 Tips（全站共用）</h2>
-      <ul class="space-y-3 text-sm leading-relaxed text-slate-700">
-        <li><strong class="text-ink">私隱優先：</strong>盡量用學校 Google／Microsoft；學生資料先匿名（學生A／小一男）。</li>
-        <li><strong class="text-ink">Prompt 習慣：</strong>加「繁體中文、自然親切、適合香港特殊學校 SEN 學生」。</li>
-        <li><strong class="text-ink">評語／通知：</strong>先寫優勢與成長，避免標籤化；唔貼病歷、全名、相片入公用 AI。</li>
-        <li><strong class="text-ink">外地 EdTech：</strong>MagicSchool 等先按校策；不確定就只用校內帳號可用嘅工具。</li>
-        <li><strong class="text-ink">Vibe Coding：</strong>學生資料唔寫死喺 public repo 前端。</li>
-        <li><strong class="text-ink">金牌組合：</strong>Gemini + Canva + iLovePDF + Forms + Lovable。</li>
-      </ul>
-    </section>
-
-    <!-- Path -->
-    <section class="mt-6 rounded-2xl border border-dashed border-indigo-200 bg-indigo-50/50 p-6">
-      <h2 class="text-lg font-extrabold text-indigo-900 mb-2">港師 Vibe Coding 路徑</h2>
-      <ol class="text-sm text-indigo-950 space-y-1 list-decimal list-inside">
-        <li>想快做互動遊戲 → <strong>Lovable / Bolt</strong></li>
-        <li>想可部署完整工具 → <strong>Replit / Emergent</strong></li>
-        <li>注重私隱、本地 → <strong>Qwen + 本機</strong></li>
-        <li>要靚 UI 先 → <strong>v0</strong> 再接 builder</li>
-      </ol>
-    </section>
   </main>
 
   <footer class="border-t border-line bg-white">
     <div class="max-w-6xl mx-auto px-4 py-8 text-sm text-mute space-y-2">
-      <p class="font-semibold text-ink">最後更新：2026年11月 · P0</p>
-      <p>由 <strong class="text-ink">Ken Cheng</strong> 電子教學工具整理 · 將軍澳培智學校電腦科老師作品延伸</p>
+      <p>由 <strong class="text-ink">Ken Cheng</strong> 整理 · 2026年11月</p>
       <p class="flex flex-wrap gap-3">
-        <a class="text-brand hover:underline" href="https://ihateusingai-beep.github.io/KenCheng-homepage-v2/" target="_blank" rel="noopener">KenCheng Homepage v2</a>
-        <a class="text-brand hover:underline" href="https://chengky-bot.github.io/kencheng-homepage/" target="_blank" rel="noopener">舊版工具目錄</a>
+        <a class="text-brand hover:underline" href="https://ihateusingai-beep.github.io/KenCheng-homepage-v2/" target="_blank" rel="noopener">更多教學工具</a>
         <a class="text-brand hover:underline" href="https://ihateusingai-beep.github.io/puichi-school-ai-learning-games-hub/" target="_blank" rel="noopener">培智智學平台</a>
       </p>
-      <p class="text-xs">marker: hk-teacher-ai-toolkit-p0-2026-11-23</p>
     </div>
   </footer>
 
@@ -305,12 +275,14 @@
     return '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700">備選</span>';
   }
   function sourceBadge(s) {
-    const map = { 'Ken製': 'bg-emerald-50 text-emerald-800', '校本': 'bg-sky-50 text-sky-800', '外部': 'bg-slate-100 text-slate-600' };
-    return `<span class="text-[10px] font-semibold px-1.5 py-0.5 rounded ${map[s] || map['外部']}">${s}</span>`;
+    if (s === '外部') return '';
+    const map = { 'Ken製': 'bg-emerald-50 text-emerald-800', '校本': 'bg-sky-50 text-sky-800' };
+    return map[s] ? `<span class="text-[10px] font-semibold px-1.5 py-0.5 rounded ${map[s]}">${s}</span>` : '';
   }
   function privacyBadge(p) {
-    const map = { '低': 'text-emerald-700', '中': 'text-amber-700', '高': 'text-rose-700' };
-    return `<span class="text-[11px] ${map[p] || ''}">私隱風險：${p}</span>`;
+    if (p === '低') return '<span></span>';
+    const map = { '中': 'text-amber-700', '高': 'text-rose-700' };
+    return `<span class="text-[11px] ${map[p] || ''}">注意私隱</span>`;
   }
 
   function filtered() {
