@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google" content="notranslate" />
+  <meta name="googlebot" content="notranslate" />
+  <title>香港老師 AI 工具庫｜Ken Cheng</title>
+  <meta name="description" content="Ken Cheng 電子教學工具｜行政減壓、教學更有趣、老師自己也能開發。特別適合香港特殊教育老師。" />
+  <meta property="og:title" content="香港老師 AI 工具庫｜Ken Cheng" />
+  <meta property="og:description" content="期末評語、家長通知、教材 PDF、Vibe Coding——按任務揀 AI。" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://ihateusingai-beep.github.io/hk-teacher-ai-toolkit/" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#0f172a',
+            mute: '#64748b',
+            brand: '#4f46e5',
+            gold: '#d97706',
+            soft: '#f8fafc',
+            card: '#ffffff',
+            line: '#e2e8f0'
+          },
+          fontFamily: { sans: ['"Noto Sans TC"', 'system-ui', 'sans-serif'] }
+        }
+      }
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: "Noto Sans TC", system-ui, sans-serif; }
+    body.lg-text { font-size: 18px; }
+    body.lg-text .card-title { font-size: 1.2rem; }
+    .chip-active { background: #4f46e5 !important; color: #fff !important; border-color: #4f46e5 !important; }
+    .gold-ring { box-shadow: 0 0 0 2px #fbbf24 inset; }
+    .fade-in { animation: fadeUp .35s ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+  </style>
+</head>
+<body class="bg-soft text-ink antialiased">
+  <!-- BUILD: hk-teacher-ai-toolkit-p0-2026-11-23 -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-brand focus:text-white focus:px-3 focus:py-2 focus:rounded">跳到內容</a>
+
+  <header class="sticky top-0 z-40 border-b border-line bg-white/90 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center gap-3 justify-between">
+      <div class="min-w-0">
+        <p class="text-xs font-semibold text-brand tracking-wide">KEN CHENG · 電子教學工具</p>
+        <h1 class="text-lg sm:text-xl font-extrabold truncate">香港老師 AI 工具庫</h1>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="btnFont" type="button" class="text-sm px-3 py-1.5 rounded-lg border border-line hover:bg-slate-50" title="加大字">A+</button>
+        <a href="https://ihateusingai-beep.github.io/KenCheng-homepage-v2/" class="text-sm px-3 py-1.5 rounded-lg border border-line hover:bg-slate-50" target="_blank" rel="noopener">作品集</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="max-w-6xl mx-auto px-4 pb-20">
+    <!-- Hero -->
+    <section class="pt-8 pb-6">
+      <div class="rounded-2xl bg-gradient-to-br from-indigo-600 via-indigo-500 to-violet-600 text-white p-6 sm:p-8 shadow-lg">
+        <p class="text-indigo-100 text-sm font-medium mb-2">行政減壓 · 教學更有趣 · 老師自己開發</p>
+        <h2 class="text-2xl sm:text-3xl font-extrabold leading-tight mb-3">
+          期末評語、家長通知、學生記錄、活動總結一齊嚟？
+        </h2>
+        <p class="text-indigo-50 max-w-2xl text-sm sm:text-base leading-relaxed">
+          按<strong>任務</strong>揀 AI，特別適合香港特殊教育老師。每場景只推金牌＋備選，唔使翻 99 個書籤。
+        </p>
+        <div class="mt-5 flex flex-col sm:flex-row gap-3">
+          <label class="flex-1 relative">
+            <span class="sr-only">搜尋工具</span>
+            <input id="q" type="search" placeholder="搜：評語、家長信、PDF、Canva、Lovable…"
+              class="w-full rounded-xl px-4 py-3 text-ink placeholder:text-slate-400 shadow-sm border-0 focus:ring-2 focus:ring-white/60 outline-none" />
+          </label>
+          <button id="btnClear" type="button" class="rounded-xl bg-white/15 hover:bg-white/25 px-4 py-3 text-sm font-medium">清除</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Combo -->
+    <section class="mb-6" aria-label="推薦組合">
+      <div class="rounded-xl border border-line bg-white p-4 sm:p-5">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-gold">推薦組合</span>
+          <span class="text-xs text-mute">先記住呢 5 個就夠用大半個學期</span>
+        </div>
+        <p class="text-sm sm:text-base font-semibold text-ink">
+          Gemini · Canva · iLovePDF · Google/MS Forms · Lovable
+        </p>
+        <p class="text-xs text-mute mt-1">SEN 副線：Qwen · Wordwall · Padlet · 你自製課件</p>
+      </div>
+    </section>
+
+    <!-- Scene chips -->
+    <section class="mb-4 sticky top-[60px] z-30 -mx-4 px-4 py-2 bg-soft/95 backdrop-blur border-b border-transparent" id="chipBar">
+      <div id="chips" class="flex gap-2 overflow-x-auto no-scrollbar pb-1" role="tablist" aria-label="場景"></div>
+    </section>
+
+    <!-- Stats -->
+    <p id="resultMeta" class="text-sm text-mute mb-4"></p>
+
+    <!-- Tool grid -->
+    <section id="grid" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></section>
+
+    <!-- Empty -->
+    <p id="empty" class="hidden text-center text-mute py-16">搵唔到。試下改關鍵字或撳「全部」。</p>
+
+    <!-- Tips -->
+    <section id="tips" class="mt-12 rounded-2xl border border-line bg-white p-6 sm:p-8">
+      <h2 class="text-xl font-extrabold mb-4">使用 Tips（全站共用）</h2>
+      <ul class="space-y-3 text-sm leading-relaxed text-slate-700">
+        <li><strong class="text-ink">私隱優先：</strong>盡量用學校 Google／Microsoft；學生資料先匿名（學生A／小一男）。</li>
+        <li><strong class="text-ink">Prompt 習慣：</strong>加「繁體中文、自然親切、適合香港特殊學校 SEN 學生」。</li>
+        <li><strong class="text-ink">評語／通知：</strong>先寫優勢與成長，避免標籤化；唔貼病歷、全名、相片入公用 AI。</li>
+        <li><strong class="text-ink">外地 EdTech：</strong>MagicSchool 等先按校策；不確定就只用校內帳號可用嘅工具。</li>
+        <li><strong class="text-ink">Vibe Coding：</strong>學生資料唔寫死喺 public repo 前端。</li>
+        <li><strong class="text-ink">金牌組合：</strong>Gemini + Canva + iLovePDF + Forms + Lovable。</li>
+      </ul>
+    </section>
+
+    <!-- Path -->
+    <section class="mt-6 rounded-2xl border border-dashed border-indigo-200 bg-indigo-50/50 p-6">
+      <h2 class="text-lg font-extrabold text-indigo-900 mb-2">港師 Vibe Coding 路徑</h2>
+      <ol class="text-sm text-indigo-950 space-y-1 list-decimal list-inside">
+        <li>想快做互動遊戲 → <strong>Lovable / Bolt</strong></li>
+        <li>想可部署完整工具 → <strong>Replit / Emergent</strong></li>
+        <li>注重私隱、本地 → <strong>Qwen + 本機</strong></li>
+        <li>要靚 UI 先 → <strong>v0</strong> 再接 builder</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="border-t border-line bg-white">
+    <div class="max-w-6xl mx-auto px-4 py-8 text-sm text-mute space-y-2">
+      <p class="font-semibold text-ink">最後更新：2026年11月 · P0</p>
+      <p>由 <strong class="text-ink">Ken Cheng</strong> 電子教學工具整理 · 將軍澳培智學校電腦科老師作品延伸</p>
+      <p class="flex flex-wrap gap-3">
+        <a class="text-brand hover:underline" href="https://ihateusingai-beep.github.io/KenCheng-homepage-v2/" target="_blank" rel="noopener">KenCheng Homepage v2</a>
+        <a class="text-brand hover:underline" href="https://chengky-bot.github.io/kencheng-homepage/" target="_blank" rel="noopener">舊版工具目錄</a>
+        <a class="text-brand hover:underline" href="https://ihateusingai-beep.github.io/puichi-school-ai-learning-games-hub/" target="_blank" rel="noopener">培智智學平台</a>
+      </p>
+      <p class="text-xs">marker: hk-teacher-ai-toolkit-p0-2026-11-23</p>
+    </div>
+  </footer>
+
+  <script>
+  // —— Data ——
+  const SCENES = [
+    { id: 'all', label: '全部' },
+    { id: 'parent', label: '家長溝通' },
+    { id: 'comment', label: '評語記錄' },
+    { id: 'pdf', label: '教材PDF' },
+    { id: 'form', label: '問卷互動' },
+    { id: 'design', label: '視覺海報' },
+    { id: 'video', label: '影片多媒體' },
+    { id: 'plan', label: '教案通用AI' },
+    { id: 'vibe', label: 'Vibe Coding' },
+    { id: 'ken', label: 'Ken 製精選' }
+  ];
+
+  /** @type {Array<{
+   *  id:string, name:string, url:string, scene:string[], tier:'gold'|'alt'|'pro',
+   *  one:string, best:string, how:string, hk:string, privacy:'低'|'中'|'高',
+   *  source:'外部'|'Ken製'|'校本', tags:string
+   * }>} */
+  const TOOLS = [
+    // parent
+    { id:'gemini-parent', name:'Gemini', url:'https://gemini.google.com/', scene:['parent','plan','comment'], tier:'gold',
+      one:'寫 Line 群、家長信、活動通知初稿最快。', best:'班級活動提醒、溫暖語氣家長訊息', how:'貼重點 → 要求繁中親切 200 字 → 再改校名語氣', hk:'優先學校 Google 教育版；唔貼學生全名。', privacy:'中', source:'外部', tags:'家長 通知 信 通用' },
+    { id:'deepl', name:'DeepL', url:'https://www.deepl.com/translator', scene:['parent'], tier:'alt',
+      one:'中英雙語家長信翻譯較自然。', best:'需要中英對照的通知', how:'中文定稿 → 譯英 → 人工睇專有名詞', hk:'校名／SEN 術語要人手核。', privacy:'中', source:'外部', tags:'翻譯 英文 雙語' },
+    { id:'grammarly', name:'Grammarly', url:'https://www.grammarly.com/', scene:['parent'], tier:'alt',
+      one:'潤色英文通知文法同語氣。', best:'英文家長信最後一polish', how:'貼英文 → 調 tone friendly → 再 copy', hk:'免費層夠日常短訊。', privacy:'中', source:'外部', tags:'英文 潤色' },
+
+    // comment
+    { id:'gemini-comment', name:'Gemini（評語）', url:'https://gemini.google.com/', scene:['comment'], tier:'gold',
+      one:'輸入優勢＋目標 → 個性化評語初稿。', best:'SEN 個別化期末評語', how:'匿名「學生A」→ 列 3 優點 2 目標 → 要家長可讀書面語', hk:'先優勢再成長；避免標籤化。', privacy:'高', source:'外部', tags:'評語 期末 記錄 SEN' },
+    { id:'qwen-comment', name:'Qwen Chat', url:'https://chat.qwen.ai/', scene:['comment','plan'], tier:'alt',
+      one:'中文長文評語、整理觀察記錄穩。', best:'繁中書面語評語／報告', how:'貼觀察要點 → 要求分段優點／建議／家校', hk:'中文友好；一樣要匿名。', privacy:'高', source:'外部', tags:'評語 中文 Qwen' },
+    { id:'magicschool', name:'MagicSchool', url:'https://www.magicschool.ai/', scene:['comment'], tier:'alt',
+      one:'教育向評語／回饋模板多。', best:'快速評語骨架（校策允許時）', how:'揀 report card → 匿名資料 → 再人手改港式', hk:'外地 EdTech，先問校策；勿上傳真實身份。', privacy:'高', source:'外部', tags:'評語 MagicSchool' },
+    { id:'magic-html', name:'Magic HTML Assessment', url:'https://ihateusingai-beep.github.io/magic-html-assessment/', scene:['comment','ken'], tier:'alt',
+      one:'Ken 製 HTML 評估／小測工具。', best:'課堂即時評估頁', how:'開連結 → 按課堂模式用', hk:'自製；唔替代長評語。', privacy:'低', source:'Ken製', tags:'評估 Ken' },
+
+    // pdf
+    { id:'ilovepdf', name:'iLovePDF', url:'https://www.ilovepdf.com/zh-tw', scene:['pdf'], tier:'gold',
+      one:'合併、壓縮、轉檔、拆頁一次搞掂。', best:'交功課冊、掃描講義整理', how:'上傳 → 選功能 → 下載', hk:'敏感學生卷可離線工具優先。', privacy:'中', source:'外部', tags:'PDF 合併 壓縮' },
+    { id:'updf', name:'UPDF', url:'https://updf.com/', scene:['pdf'], tier:'alt',
+      one:'OCR、AI 拉重點、批註較完整。', best:'舊講義掃描件整理', how:'開檔 → OCR → 摘要／表格', hk:'付費功能多；試完先決定校購。', privacy:'中', source:'外部', tags:'OCR PDF AI' },
+    { id:'lightpdf', name:'LightPDF', url:'https://lightpdf.com/', scene:['pdf'], tier:'alt',
+      one:'瀏覽器快速 PDF AI 處理。', best:'臨時轉檔／摘要', how:'上傳 → 揀 AI 功能 → 下載', hk:'唔傳含姓名卷。', privacy:'中', source:'外部', tags:'PDF Light' },
+
+    // form
+    { id:'gforms', name:'Google Forms', url:'https://forms.google.com/', scene:['form'], tier:'gold',
+      one:'家長回覆、活動意見、自動統計。', best:'校內收表最穩', how:'空白表 → 題型 → 傳送連結', hk:'學校 Google 帳號；關「收集電郵」可按需要。', privacy:'低', source:'外部', tags:'表單 問卷 Google' },
+    { id:'msforms', name:'Microsoft Forms', url:'https://forms.office.com/', scene:['form'], tier:'gold',
+      one:'Microsoft 365 學校常用收表。', best:'已用 MS 生態的學校', how:'新建 → 分享 → 開 Excel 結果', hk:'同 Google 二選一即可。', privacy:'低', source:'外部', tags:'表單 Microsoft' },
+    { id:'padlet', name:'Padlet', url:'https://padlet.com/', scene:['form'], tier:'alt',
+      one:'學生反思、分組討論牆。', best:'SEN 用圖／短句表達', how:'建牆 → 學生貼文 → 老師匯出', hk:'開私密牆；關公開瀏覽。', privacy:'中', source:'外部', tags:'Padlet 互動 討論' },
+    { id:'wordwall', name:'Wordwall', url:'https://wordwall.net/tc', scene:['form'], tier:'alt',
+      one:'快速出課堂小遊戲／配對。', best:'堂上 5 分鐘暖身', how:'揀模板 → 輸入詞 → 投屏', hk:'繁中介面；注意帳戶方案。', privacy:'低', source:'外部', tags:'Wordwall 遊戲' },
+    { id:'group-tool', name:'合作學習分組', url:'https://chengky-bot.github.io/Collaborative-Learning-Grouping-Tool/', scene:['form','ken'], tier:'alt',
+      one:'Ken 製分組助手。', best:'合作學習快速分組', how:'開工具 → 輸入名單策略 → 出組', hk:'名單可只用座號。', privacy:'低', source:'Ken製', tags:'分組 Ken' },
+
+    // design
+    { id:'canva', name:'Canva', url:'https://www.canva.com/', scene:['design'], tier:'gold',
+      one:'打幾個字就出海報、節目單、告示。', best:'活動宣傳、教室佈置', how:'模板 → 改字 → 下載 PDF／PNG', hk:'Education 方案更適合學校。', privacy:'低', source:'外部', tags:'海報 設計 Canva' },
+    { id:'gamma', name:'Gamma', url:'https://gamma.app/', scene:['design','plan'], tier:'alt',
+      one:'文字一鍵變簡報／網頁。', best:'公開課簡報初稿', how:'貼大綱 → Generate → 微調', hk:'最後人手改校徽校名。', privacy:'中', source:'外部', tags:'簡報 Gamma' },
+    { id:'napkin', name:'Napkin AI', url:'https://www.napkin.ai/', scene:['design'], tier:'alt',
+      one:'想法變圖表／流程圖。', best:'概念圖、流程解說', how:'貼要點 → 揀圖表 → 匯出', hk:'適合備課視覺化。', privacy:'中', source:'外部', tags:'圖表 Napkin' },
+    { id:'cleanup', name:'Cleanup.pictures', url:'https://cleanup.pictures/', scene:['design'], tier:'alt',
+      one:'清走相片雜物／路人。', best:'活動相、教材圖去雜', how:'上傳 → 擦 → 下載', hk:'有學生面孔嘅相慎用雲端。', privacy:'高', source:'外部', tags:'去背 修圖' },
+    { id:'removebg', name:'Remove.bg', url:'https://www.remove.bg/', scene:['design'], tier:'alt',
+      one:'一鍵去背。', best:'圖卡、海報主體', how:'上傳 → 下載 PNG', hk:'教材圖優先；學生相慎。', privacy:'中', source:'外部', tags:'去背' },
+    { id:'recraft', name:'Recraft', url:'https://www.recraft.ai/', scene:['design'], tier:'pro',
+      one:'品牌一致插畫／SVG。', best:'系列圖卡風格統一', how:'style lock → 批次出圖', hk:'進階設計用。', privacy:'中', source:'外部', tags:'插畫 SVG' },
+
+    // video
+    { id:'descript', name:'Descript', url:'https://www.descript.com/', scene:['video'], tier:'gold',
+      one:'改字幕就改影片，剪輯好上手。', best:'校外教學精華、教師短片', how:'匯入 → 刪字句 → 匯出', hk:'注意雲端儲存條款。', privacy:'中', source:'外部', tags:'剪片 字幕' },
+    { id:'edpuzzle', name:'Edpuzzle', url:'https://edpuzzle.com/', scene:['video'], tier:'alt',
+      one:'影片加問題變互動 lesson。', best:'課前／課後看片答題', how:'貼 YouTube → 加題 → 派給學生', hk:'學生帳要跟校策。', privacy:'中', source:'外部', tags:'互動影片 Edpuzzle' },
+    { id:'fomofly', name:'Fomofly', url:'https://www.fomofly.com/', scene:['video'], tier:'alt',
+      one:'錄影自動剪精華（港產向）。', best:'活動短片快剪', how:'上傳 → AI 精華 → 下載', hk:'自行核對條款與私隱；學生面孔慎。', privacy:'高', source:'外部', tags:'香港 短片 Fomofly' },
+    { id:'suno', name:'Suno', url:'https://suno.com/', scene:['video'], tier:'alt',
+      one:'文字生成課堂 BGM／歌曲。', best:'活動主題曲、遊戲 BGM', how:'寫風格＋歌詞 → 生成', hk:'注意版權用於公開場合。', privacy:'低', source:'外部', tags:'音樂 BGM' },
+
+    // plan / AI
+    { id:'gemini-plan', name:'Gemini（教案）', url:'https://gemini.google.com/', scene:['plan'], tier:'gold',
+      one:'腦storm、教案、差異化教材。', best:'日常備課總入口', how:'課題+年級+SEN 分層 → 要三層活動', hk:'Google Workspace 教育版較合規。', privacy:'中', source:'外部', tags:'教案 分層 Gemini' },
+    { id:'claude', name:'Claude', url:'https://claude.ai/', scene:['plan'], tier:'alt',
+      one:'長文推理、改教案結構清晰。', best:'長教案／政策文件整理', how:'貼大綱 → 要求條理化', hk:'留意學校是否允許。', privacy:'中', source:'外部', tags:'Claude 教案' },
+    { id:'grok', name:'Grok', url:'https://grok.com/', scene:['plan'], tier:'alt',
+      one:'快問快答、創意活動點子。', best:'臨時課堂點子', how:'一句課題 → 要 5 個 SEN 友好活動', hk:'產出要人手篩。', privacy:'中', source:'外部', tags:'Grok' },
+    { id:'kimi', name:'Kimi', url:'https://www.kimi.com/', scene:['plan'], tier:'alt',
+      one:'超長上下文，適合整疊資料。', best:'多份文件一次整理', how:'上傳／貼文 → 要摘要表', hk:'勿上傳含 PII 文件。', privacy:'高', source:'外部', tags:'Kimi 長文' },
+    { id:'felo', name:'Felo', url:'https://felo.ai/zh-Hant/search', scene:['plan'], tier:'alt',
+      one:'搜尋＋結構化簡報。', best:'主題資料＋簡報骨架', how:'搜主題 → 轉簡報', hk:'繁中介面友好。', privacy:'中', source:'外部', tags:'搜尋 簡報 Felo' },
+    { id:'gns', name:'GNS AI', url:'https://chat.ai.gns.hk/login', scene:['plan'], tier:'alt',
+      one:'校本 AI 聊天（如校有開）。', best:'跟校內政策嘅通用 AI', how:'用學校帳登入', hk:'校本；優先於不明外地工具。', privacy:'低', source:'校本', tags:'校本 GNS' },
+
+    // vibe
+    { id:'lovable', name:'Lovable', url:'https://lovable.dev/', scene:['vibe'], tier:'gold',
+      one:'對話做出完整漂亮 Web App。', best:'扣題練習、獎勵系統', how:'用中文講需求 → 預覽 → 部署', hk:'非技術老師第一站。', privacy:'中', source:'外部', tags:'Vibe Lovable App' },
+    { id:'bolt', name:'Bolt', url:'https://bolt.new/', scene:['vibe'], tier:'gold',
+      one:'瀏覽器內快速生成並預覽。', best:'當日活動互動頁', how:'一句需求 → 即預覽 → 匯出', hk:'原型最快。', privacy:'中', source:'外部', tags:'Bolt 原型' },
+    { id:'v0', name:'v0', url:'https://v0.app/', scene:['vibe'], tier:'alt',
+      one:'生成漂亮 React／介面。', best:'教室看板、視覺 UI', how:'描述 UI → 複製／接到 builder', hk:'UI 先，再接 Lovable/Bolt。', privacy:'中', source:'外部', tags:'v0 UI' },
+    { id:'replit', name:'Replit', url:'https://replit.com/', scene:['vibe'], tier:'alt',
+      one:'完整 IDE + AI，部署簡單。', best:'想學 coding 的老師', how:'Agent 建專案 → Deploy', hk:'可公開／私有要自己揀。', privacy:'中', source:'外部', tags:'Replit IDE' },
+    { id:'base44', name:'Base44', url:'https://base44.com/', scene:['vibe'], tier:'alt',
+      one:'一鍵後端、登入、資料庫。', best:'學校行政小工具', how:'講功能 → 出 app → 設登入', hk:'有登入就唔好公開學生表。', privacy:'高', source:'外部', tags:'Base44 後端' },
+    { id:'emergent', name:'Emergent', url:'https://app.emergent.sh/home', scene:['vibe'], tier:'alt',
+      one:'多 Agent 全端／手機向。', best:'較完整教學 App', how:'描述產品 → 迭代', hk:'進階；要時間驗收。', privacy:'中', source:'外部', tags:'Emergent' },
+    { id:'dyad', name:'Dyad', url:'https://www.dyad.sh/', scene:['vibe'], tier:'alt',
+      one:'本機向、免費層較友好。', best:'小型教學工具試作', how:'本機開 → 對話建 app', hk:'私隱較易控。', privacy:'低', source:'外部', tags:'Dyad 本地' },
+    { id:'cursor', name:'Cursor', url:'https://cursor.com/zh-Hant', scene:['vibe'], tier:'pro',
+      one:'AI 程式編輯器（有 code 底）。', best:'改現有專案、進階開發', how:'開資料夾 → Chat／Composer', hk:'進階老師用。', privacy:'中', source:'外部', tags:'Cursor 程式' },
+    { id:'manus', name:'Manus', url:'https://manus.im/', scene:['vibe','plan'], tier:'alt',
+      one:'Agent 自動完成整理任務。', best:'自動整理教材、報告草稿', how:'交代任務 → 等產出 → 審核', hk:'輸出必人工核。', privacy:'中', source:'外部', tags:'Agent Manus' },
+    { id:'qwen-vibe', name:'Qwen（私隱／中文 coding）', url:'https://chat.qwen.ai/', scene:['vibe','plan'], tier:'alt',
+      one:'中文 coding 強，可配本地思路。', best:'私隱優先小工具構思', how:'要完整 HTML 單檔 → 複製自建 Pages', hk:'可配合本機模型思維。', privacy:'低', source:'外部', tags:'Qwen coding 私隱' },
+
+    // ken picks
+    { id:'tda', name:'TDA Builder', url:'https://chengky-bot.github.io/TDA-Prompt-Builder/', scene:['ken','plan'], tier:'gold',
+      one:'教學提示詞構建器。', best:'寫準教學／家長語氣 prompt', how:'開工具 → 填場景 → 複製 prompt', hk:'Ken 製。', privacy:'低', source:'Ken製', tags:'TDA prompt Ken' },
+    { id:'starclass', name:'StarClass Hub', url:'https://ihateusingai-beep.github.io/starclass-hub/', scene:['ken'], tier:'alt',
+      one:'課堂獎勵／角色進化。', best:'課堂管理與動機', how:'開 hub → 課堂模式', hk:'Ken 製。', privacy:'低', source:'Ken製', tags:'獎勵 課堂 Ken' },
+    { id:'mission', name:'Student Mission App', url:'https://ihateusingai-beep.github.io/Student-mission-app/', scene:['ken'], tier:'alt',
+      one:'學生任務與獎勵系統。', best:'任務／徽章／證書', how:'開 app → 設任務', hk:'Ken 製。', privacy:'低', source:'Ken製', tags:'任務 Ken' },
+    { id:'friendly', name:'友愛校園 V2', url:'https://ihateusingai-beep.github.io/friendly-classroom-v2/', scene:['ken'], tier:'alt',
+      one:'友愛校園互動工具。', best:'品德／課堂氣氛', how:'開頁使用', hk:'Ken 製。', privacy:'低', source:'Ken製', tags:'友愛 Ken' },
+    { id:'qr', name:'QR Code 產生器', url:'https://chengky-bot.github.io/qr-code-generator/', scene:['ken','form'], tier:'alt',
+      one:'快速出 QR。', best:'派連結給家長／學生', how:'貼網址 → 下載', hk:'Ken 製。', privacy:'低', source:'Ken製', tags:'QR Ken' },
+    { id:'mood', name:'課堂情緒溫度計', url:'https://v0-classroom-mood-thermometer.vercel.app/', scene:['ken'], tier:'alt',
+      one:'課堂情緒氛圍互動。', best:'開場 check-in', how:'投屏 → 學生選', hk:'Ken 製（v0）。', privacy:'低', source:'Ken製', tags:'情緒 Ken' }
+  ];
+
+  // —— State ——
+  let scene = 'all';
+  let query = '';
+
+  const $ = (id) => document.getElementById(id);
+  const chipsEl = $('chips');
+  const gridEl = $('grid');
+  const emptyEl = $('empty');
+  const metaEl = $('resultMeta');
+  const qEl = $('q');
+
+  function tierBadge(t) {
+    if (t === 'gold') return '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">金牌</span>';
+    if (t === 'pro') return '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-200 text-slate-700">進階</span>';
+    return '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700">備選</span>';
+  }
+  function sourceBadge(s) {
+    const map = { 'Ken製': 'bg-emerald-50 text-emerald-800', '校本': 'bg-sky-50 text-sky-800', '外部': 'bg-slate-100 text-slate-600' };
+    return `<span class="text-[10px] font-semibold px-1.5 py-0.5 rounded ${map[s] || map['外部']}">${s}</span>`;
+  }
+  function privacyBadge(p) {
+    const map = { '低': 'text-emerald-700', '中': 'text-amber-700', '高': 'text-rose-700' };
+    return `<span class="text-[11px] ${map[p] || ''}">私隱風險：${p}</span>`;
+  }
+
+  function filtered() {
+    const qq = query.trim().toLowerCase();
+    return TOOLS.filter(t => {
+      const okScene = scene === 'all' || t.scene.includes(scene);
+      if (!okScene) return false;
+      if (!qq) return true;
+      const blob = [t.name, t.one, t.best, t.how, t.hk, t.tags, t.source, t.tier].join(' ').toLowerCase();
+      return blob.includes(qq);
+    }).sort((a, b) => {
+      const rank = { gold: 0, alt: 1, pro: 2 };
+      return (rank[a.tier] - rank[b.tier]) || a.name.localeCompare(b.name, 'zh-Hant');
+    });
+  }
+
+  function renderChips() {
+    chipsEl.innerHTML = SCENES.map(s => `
+      <button type="button" role="tab" data-scene="${s.id}"
+        class="chip shrink-0 text-sm px-3 py-1.5 rounded-full border border-line bg-white hover:border-brand/40 ${scene === s.id ? 'chip-active' : ''}"
+        aria-selected="${scene === s.id}">${s.label}</button>
+    `).join('');
+  }
+
+  function card(t) {
+    const gold = t.tier === 'gold' ? 'gold-ring' : '';
+    return `
+      <article class="fade-in rounded-2xl border border-line bg-white p-4 sm:p-5 flex flex-col gap-3 shadow-sm hover:shadow-md transition ${gold}">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="card-title font-extrabold text-base leading-snug">${escapeHtml(t.name)}</h3>
+          <div class="flex flex-wrap gap-1 justify-end">${tierBadge(t.tier)}${sourceBadge(t.source)}</div>
+        </div>
+        <p class="text-sm text-slate-700 leading-relaxed">${escapeHtml(t.one)}</p>
+        <dl class="text-xs space-y-1.5 text-slate-600">
+          <div><dt class="inline font-semibold text-ink">最適合：</dt><dd class="inline">${escapeHtml(t.best)}</dd></div>
+          <div><dt class="inline font-semibold text-ink">點用：</dt><dd class="inline">${escapeHtml(t.how)}</dd></div>
+          <div><dt class="inline font-semibold text-ink">HK提示：</dt><dd class="inline">${escapeHtml(t.hk)}</dd></div>
+        </dl>
+        <div class="mt-auto pt-1 flex items-center justify-between gap-2">
+          ${privacyBadge(t.privacy)}
+          <a href="${t.url}" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-lg bg-brand text-white text-sm font-semibold px-3 py-2 hover:bg-indigo-700">開啟</a>
+        </div>
+      </article>`;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function render() {
+    const list = filtered();
+    const sceneLabel = SCENES.find(s => s.id === scene)?.label || '';
+    metaEl.textContent = query
+      ? `「${query}」· ${list.length} 個工具`
+      : `${sceneLabel} · ${list.length} 個工具`;
+    gridEl.innerHTML = list.map(card).join('');
+    emptyEl.classList.toggle('hidden', list.length > 0);
+    renderChips();
+  }
+
+  chipsEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-scene]');
+    if (!btn) return;
+    scene = btn.getAttribute('data-scene');
+    render();
+  });
+
+  qEl.addEventListener('input', () => {
+    query = qEl.value;
+    render();
+  });
+
+  $('btnClear').addEventListener('click', () => {
+    qEl.value = '';
+    query = '';
+    scene = 'all';
+    render();
+    qEl.focus();
+  });
+
+  $('btnFont').addEventListener('click', () => {
+    document.body.classList.toggle('lg-text');
+  });
+
+  render();
+  </script>
+</body>
+</html>
